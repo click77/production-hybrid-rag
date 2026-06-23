@@ -1,0 +1,550 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "total_questions": 50,
+    "categories": {
+      "straightforward": 20,
+      "multi_hop": 10,
+      "unanswerable": 10,
+      "ambiguous": 10
+    },
+    "corpus": "docs/",
+    "notes": "All answers written by hand from source documents. Do not regenerate with LLM."
+  },
+  "questions": [
+
+
+
+    {
+      "id": "sq_01",
+      "category": "straightforward",
+      "question": "What is hybrid retrieval?",
+      "answer": "Hybrid retrieval combines dense vector search with sparse keyword search to improve document retrieval quality.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Introduction to Hybrid RAG",
+      "requires_chunks": ["sq_01_chunk"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_02",
+      "category": "straightforward",
+      "question": "What does BM25 stand for?",
+      "answer": "BM25 stands for Best Match 25, a ranking function used in information retrieval.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Sparse Retrieval",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_03",
+      "category": "straightforward",
+      "question": "What embedding model is used for dense retrieval?",
+      "answer": "text-embedding-3-small from OpenAI is used to embed both documents and queries.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Dense Retrieval",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_04",
+      "category": "straightforward",
+      "question": "What is Reciprocal Rank Fusion?",
+      "answer": "Reciprocal Rank Fusion (RRF) is a method that merges multiple ranked result lists by scoring each document based on its rank position across all lists.",
+      "source_file": "docs/sample.txt",
+      "source_section": "How It Works",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_05",
+      "category": "straightforward",
+      "question": "What vector store is used in this project?",
+      "answer": "ChromaDB is used as the vector store, persisting embeddings to disk.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Infrastructure",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_06",
+      "category": "straightforward",
+      "question": "What is the purpose of the reranker?",
+      "answer": "The reranker performs a second-pass scoring of RRF candidates using an LLM-as-judge to improve precision before generation.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Reranking",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_07",
+      "category": "straightforward",
+      "question": "What chunking strategies are supported?",
+      "answer": "Three strategies are supported: fixed-size with overlap, recursive character splitting by section headers, and semantic chunking by topic boundaries.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_08",
+      "category": "straightforward",
+      "question": "What is the default chunk size?",
+      "answer": "The default chunk size is 512 tokens with a 64-token overlap.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_09",
+      "category": "straightforward",
+      "question": "What file formats does the loader support?",
+      "answer": "The loader supports .txt, .md, .html, and .pdf files.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Ingestion",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_10",
+      "category": "straightforward",
+      "question": "What is the RRF constant K used for?",
+      "answer": "The RRF constant K (set to 60) dampens the impact of rank position so that rank-1 results do not dominate too heavily.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Fusion",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_11",
+      "category": "straightforward",
+      "question": "How are duplicates detected before indexing?",
+      "answer": "Before inserting a chunk, its embedding is compared against existing ChromaDB entries. If cosine similarity exceeds 0.95, the chunk is flagged and skipped.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Deduplication",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_12",
+      "category": "straightforward",
+      "question": "What model is used for generation?",
+      "answer": "GPT-4o is used for answer generation.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Generation",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_13",
+      "category": "straightforward",
+      "question": "What is the citation format used in generated answers?",
+      "answer": "Citations use bracketed numbers such as [1], [2], or [1][3] placed after each factual claim.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Generation",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_14",
+      "category": "straightforward",
+      "question": "Where is the BM25 index stored?",
+      "answer": "The BM25 index is serialised and saved to disk at data/bm25_index.pkl using pickle.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Indexing",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_15",
+      "category": "straightforward",
+      "question": "What API framework is used to serve the RAG pipeline?",
+      "answer": "FastAPI with uvicorn is used to expose the pipeline as a REST API.",
+      "source_file": "docs/sample.txt",
+      "source_section": "API",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_16",
+      "category": "straightforward",
+      "question": "What is the composite confidence threshold for triggering a refusal?",
+      "answer": "A composite confidence score below 0.50 triggers a graceful refusal instead of a generated answer.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Scoring",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_17",
+      "category": "straightforward",
+      "question": "What dashboard tool is used?",
+      "answer": "Streamlit is used to build the query dashboard.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Dashboard",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_18",
+      "category": "straightforward",
+      "question": "What does the citation verifier check?",
+      "answer": "The citation verifier checks whether each bracketed citation in the answer actually supports the claim it is attached to, using an LLM-as-judge.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Citation Verification",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_19",
+      "category": "straightforward",
+      "question": "What three scores make up the composite confidence score?",
+      "answer": "The composite score combines retrieval confidence, citation coverage, and answer completeness.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Scoring",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+    {
+      "id": "sq_20",
+      "category": "straightforward",
+      "question": "How many chunks does the reranker keep after scoring?",
+      "answer": "The reranker keeps the top 5 chunks after scoring up to 20 RRF candidates.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Reranking",
+      "requires_chunks": [],
+      "difficulty": "easy"
+    },
+
+ 
+
+    {
+      "id": "mh_01",
+      "category": "multi_hop",
+      "question": "Why does the system use both BM25 and vector search instead of just one?",
+      "answer": "Vector search finds semantically similar content but misses exact keyword matches. BM25 finds exact terms but misses paraphrased content. Combining both via RRF captures what either method alone would miss.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Dense Retrieval + Sparse Retrieval",
+      "requires_chunks": ["dense_section", "sparse_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_02",
+      "category": "multi_hop",
+      "question": "How does the chunking strategy affect citation accuracy?",
+      "answer": "Smaller, topic-focused chunks (from semantic or recursive chunking) produce more precise citations because each chunk covers one idea. Fixed chunks may span multiple topics, making it harder to cite specific claims accurately.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking + Citation Verification",
+      "requires_chunks": ["chunking_section", "citation_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_03",
+      "category": "multi_hop",
+      "question": "What happens if the reranker scores all chunks below 3 out of 10?",
+      "answer": "Low reranker scores reduce the retrieval confidence dimension of the composite score. If the composite falls below 0.50, the system triggers a graceful refusal instead of generating an answer.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Reranking + Scoring",
+      "requires_chunks": ["reranker_section", "scorer_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_04",
+      "category": "multi_hop",
+      "question": "How does deduplication interact with re-indexing?",
+      "answer": "Because raw documents are saved to data/raw/ before indexing, re-indexing reads from the raw store rather than re-loading original files. Deduplication then prevents the same content being inserted twice into ChromaDB and BM25.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Ingestion + Deduplication",
+      "requires_chunks": ["loader_section", "dedup_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_05",
+      "category": "multi_hop",
+      "question": "Why is the RRF K constant set to 60 and how does it affect low-ranked results?",
+      "answer": "K=60 is the standard RRF constant. It means a result at rank 1 contributes 1/61 ≈ 0.016 while a result at rank 60 contributes 1/120 ≈ 0.008. Results beyond rank 60 contribute negligibly, preventing tail results from influencing the merged list.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Fusion",
+      "requires_chunks": ["fusion_section"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "mh_06",
+      "category": "multi_hop",
+      "question": "What is the end-to-end flow from a user question to a final answer?",
+      "answer": "The query is embedded and searched via dense retrieval (ChromaDB) and sparse retrieval (BM25). Results are fused with RRF, reranked by an LLM-judge, passed to GPT-4o for grounded generation with citations, verified by the citation verifier, scored across three dimensions, and either returned or replaced with a graceful refusal.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Full Pipeline",
+      "requires_chunks": ["pipeline_section"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "mh_07",
+      "category": "multi_hop",
+      "question": "How does semantic chunking reduce hallucination risk?",
+      "answer": "Semantic chunking splits text at topic boundaries, producing chunks that each cover one coherent idea. This means retrieved chunks are more likely to directly address the query, reducing the chance the generator draws on tangential content and produces unsupported claims.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking + Generation",
+      "requires_chunks": ["chunking_section", "generation_section"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "mh_08",
+      "category": "multi_hop",
+      "question": "What metadata is attached to each chunk and why does it matter for citations?",
+      "answer": "Each chunk stores doc_id, source_file, file_type, page_number, section_heading, strategy, chunk_index, and token_count. This metadata lets the citation system tell users exactly which document, page, and section each claim came from.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking + Indexing",
+      "requires_chunks": ["chunker_section", "indexer_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_09",
+      "category": "multi_hop",
+      "question": "How do the dense weight and sparse weight affect retrieval for keyword-heavy queries?",
+      "answer": "For keyword-heavy queries (e.g. function names, error codes), increasing sparse weight gives BM25 more influence in the RRF merge, surfacing exact-match results higher. The weights are configurable via DENSE_WEIGHT and SPARSE_WEIGHT in .env.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Fusion",
+      "requires_chunks": ["fusion_section"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mh_10",
+      "category": "multi_hop",
+      "question": "Why are both ChromaDB and BM25 written to in the same operation?",
+      "answer": "Writing to both indexes atomically in DualIndex.add_chunks() ensures they stay in sync. If only one index were updated, vector search and keyword search would query different document sets, producing inconsistent fusion results.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Indexing",
+      "requires_chunks": ["indexer_section"],
+      "difficulty": "medium"
+    },
+
+
+
+    {
+      "id": "un_01",
+      "category": "unanswerable",
+      "question": "What is the monthly cost of running this system in production?",
+      "answer": "UNANSWERABLE: The corpus does not contain cost or pricing information.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_02",
+      "category": "unanswerable",
+      "question": "Who originally invented BM25?",
+      "answer": "UNANSWERABLE: The corpus does not contain historical attribution for BM25.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_03",
+      "category": "unanswerable",
+      "question": "What is the latency of the API endpoint in milliseconds?",
+      "answer": "UNANSWERABLE: No latency benchmarks are present in the corpus.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_04",
+      "category": "unanswerable",
+      "question": "How does this system compare to Pinecone?",
+      "answer": "UNANSWERABLE: The corpus does not contain comparisons to Pinecone.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_05",
+      "category": "unanswerable",
+      "question": "What programming language was BM25 first implemented in?",
+      "answer": "UNANSWERABLE: Not covered in the corpus.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_06",
+      "category": "unanswerable",
+      "question": "What is the maximum number of documents the system can index?",
+      "answer": "UNANSWERABLE: No scaling limits are documented in the corpus.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_07",
+      "category": "unanswerable",
+      "question": "Is this system GDPR compliant?",
+      "answer": "UNANSWERABLE: The corpus contains no information about compliance.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_08",
+      "category": "unanswerable",
+      "question": "What is the exact cosine similarity score between chunk 3 and chunk 7?",
+      "answer": "UNANSWERABLE: Pairwise similarity scores between specific chunks are not stored.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "hard",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_09",
+      "category": "unanswerable",
+      "question": "How does the system handle documents written in Japanese?",
+      "answer": "UNANSWERABLE: Multilingual support is not documented in the corpus.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "expected_behavior": "graceful_refusal"
+    },
+    {
+      "id": "un_10",
+      "category": "unanswerable",
+      "question": "What is the carbon footprint of running an embedding model?",
+      "answer": "UNANSWERABLE: Environmental impact data is not present in the corpus.",
+      "source_file": null,
+      "source_section": null,
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "expected_behavior": "graceful_refusal"
+    },
+
+    // ── CATEGORY 4: AMBIGUOUS (10) ────────────────────────────────────
+    // Questions where interpretation matters.
+    // The system should clarify or answer the most reasonable reading.
+
+    {
+      "id": "am_01",
+      "category": "ambiguous",
+      "question": "How does the system handle large documents?",
+      "answer": "Ambiguous — could mean large file size or large token count. The system splits documents into chunks (default 512 tokens) and indexes each chunk separately. PDFs are split per page before chunking.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking",
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "ambiguity": "large could mean file size, page count, or token count"
+    },
+    {
+      "id": "am_02",
+      "category": "ambiguous",
+      "question": "Is the retrieval system fast?",
+      "answer": "Ambiguous — no latency numbers are in the corpus. ChromaDB uses HNSW indexing which is sub-linear for approximate nearest neighbour search. BM25 is O(n) over the corpus size.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Retrieval",
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "ambiguity": "fast is subjective and depends on corpus size and hardware"
+    },
+    {
+      "id": "am_03",
+      "category": "ambiguous",
+      "question": "What is the best chunking strategy?",
+      "answer": "Ambiguous — depends on document type and query distribution. Semantic chunking preserves topic coherence best. Recursive is best for structured Markdown. Fixed is the fastest to compute. The eval framework compares all three.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Chunking",
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "ambiguity": "best depends on use case, document type, and eval metric"
+    },
+    {
+      "id": "am_04",
+      "category": "ambiguous",
+      "question": "How accurate is the system?",
+      "answer": "Ambiguous — accuracy depends on the metric. The eval framework measures correctness, faithfulness, retrieval relevance, and citation accuracy separately. A composite score is produced per answer.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Evaluation",
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "ambiguity": "accuracy could mean correctness, faithfulness, or citation accuracy"
+    },
+    {
+      "id": "am_05",
+      "category": "ambiguous",
+      "question": "Can I use a different embedding model?",
+      "answer": "Ambiguous — technically yes by changing EMBED_MODEL in indexer.py, but the dense and sparse indexes must be rebuilt from scratch because embedding spaces are model-specific.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Indexing",
+      "requires_chunks": [],
+      "difficulty": "hard",
+      "ambiguity": "yes with caveats — requires full re-indexing"
+    },
+    {
+      "id": "am_06",
+      "category": "ambiguous",
+      "question": "How do I add more documents?",
+      "answer": "Ambiguous — could mean during development or via the API. During development: add files to docs/ and re-run the indexer. Via the API: POST to /v1/ingest with the document content.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Ingestion + API",
+      "requires_chunks": [],
+      "difficulty": "easy",
+      "ambiguity": "development workflow vs production API workflow"
+    },
+    {
+      "id": "am_07",
+      "category": "ambiguous",
+      "question": "Does the system support real-time indexing?",
+      "answer": "Ambiguous — the /v1/ingest API endpoint accepts new documents at runtime, but re-building the BM25 index on every insert has O(n) cost. For large corpora, batch indexing is more efficient.",
+      "source_file": "docs/sample.txt",
+      "source_section": "API + Indexing",
+      "requires_chunks": [],
+      "difficulty": "hard",
+      "ambiguity": "real-time could mean streaming, incremental, or on-demand"
+    },
+    {
+      "id": "am_08",
+      "category": "ambiguous",
+      "question": "What happens when the model is wrong?",
+      "answer": "Ambiguous — could mean retrieval model or generation model. If retrieval is wrong, low rerank scores trigger a refusal. If generation produces unsupported claims, the citation verifier flags them.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Scoring + Verification",
+      "requires_chunks": [],
+      "difficulty": "hard",
+      "ambiguity": "wrong could refer to retrieval, generation, or citation errors"
+    },
+    {
+      "id": "am_09",
+      "category": "ambiguous",
+      "question": "Is this production ready?",
+      "answer": "Ambiguous — the system includes production patterns (deduplication, citation verification, confidence scoring, graceful refusals, Docker) but does not include auth, rate limiting, or monitoring.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Infrastructure",
+      "requires_chunks": [],
+      "difficulty": "hard",
+      "ambiguity": "production ready depends on the deployment context and requirements"
+    },
+    {
+      "id": "am_10",
+      "category": "ambiguous",
+      "question": "How many results does retrieval return?",
+      "answer": "Ambiguous — depends on the stage. Dense and sparse each retrieve 20. RRF merges to top 20. The reranker keeps top 5. The generator receives 5 chunks.",
+      "source_file": "docs/sample.txt",
+      "source_section": "Retrieval + Reranking",
+      "requires_chunks": [],
+      "difficulty": "medium",
+      "ambiguity": "depends on which stage of the pipeline is meant"
+    }
+  ]
+}
