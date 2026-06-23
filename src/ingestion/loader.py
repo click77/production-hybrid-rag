@@ -6,7 +6,7 @@ import hashlib
 import re
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Union
 
 import fitz  # PyMuPDF
 from bs4 import BeautifulSoup
@@ -147,7 +147,7 @@ def _load_pdf(path: Path) -> list[dict]:
 
 SUPPORTED_EXTENSIONS = {".txt", ".md", ".html", ".htm", ".pdf"}
 
-def load_document(path: str | Path) -> list[dict]:
+def load_document(path: Union[str, Path]) -> list:
     """
     Load a single document and return a list of document dicts.
     PDFs return one dict per page; all others return one dict total.

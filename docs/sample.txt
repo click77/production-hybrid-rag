@@ -1,0 +1,11 @@
+# Introduction to Hybrid RAG
+
+Hybrid RAG combines dense vector search with sparse keyword search.
+This allows the system to retrieve documents that match both semantic
+meaning and exact keyword terms.
+
+## How It Works
+
+Dense retrieval uses embeddings to find semantically similar chunks.
+Sparse retrieval uses BM25 to find exact keyword matches.
+Reciprocal Rank Fusion merges both result lists into one ranked output.
